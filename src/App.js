@@ -1,19 +1,24 @@
 import './App.css';
 import { Footer } from './MyComponents/Footer';
 import Header from "./MyComponents/Header";
-import { Nominees } from './MyComponents/Nominees';
+import { SearchResults } from './MyComponents/SearchResults';
 import React,{useState, useEffect} from 'react';
+import { LandingPage } from './MyComponents/LandingPage';
 
 function App() {
 
   const [searchResults, setsearchResults] = useState([]);
   const [searchDesc, setsearchDesc] = useState('');
-
-  const onRemove = (movie)=>{
-    console.log("This has been removed",movie);
-    setNominees(nominees.filter((e)=>{
-      return e!==movie;
-    })); 
+  const [nominees, setNominees] = useState([]);
+  
+  const addNominee = (movie)=>{
+    const nomineeToAdd ={
+      Title: movie.Title,
+      Year: movie.Year,
+      Type: movie.Type,
+      Poster: movie.Poster
+    }
+    return setNominees([...nominees,nomineeToAdd]);
   }
 
   const doSearch = async(searchText)=>{
@@ -47,41 +52,21 @@ function App() {
 
   }
 
-  const [nominees, setNominees] = useState(
-      [
-          {
-            title:"Love and Monsters",
-            genre:"action,fantasy",
-            desc:"world is filled with mutated insects which have taken over civilization"
-          },
-          {
-            title:"Nobody",
-            genre:"action",
-            desc:"A retired secret agent is bored of his life and seeks some action/violence"
-          },
-          {
-            title:"Back to the Future",
-            genre:"action,Sci-fi,Comedy",
-            desc:"Marty and the Doc go to the past and accidentally mess things up which they must fix to balance the space-time continuum"
-          },
-          {
-            title:"Love and Monster1s",
-            genre:"action,fantasy",
-            desc:"world is filled with mutated insects which have taken over civilization"
-          },
-          {
-            title:"Love and Monsters4",
-            genre:"action,fantasy",
-            desc:"world is filled with mutated insects which have taken over civilization"
-          }
-      ]
-  );
 
 
   return (
     <div>
-      <Header title="The Shoppies" doSearch={doSearch}/>
-      <Nominees searchResults={searchResults} searchDesc={searchDesc} onRemove={onRemove}/>
+      
+      <Header title="The Shoppies" doSearch={doSearch} searchDesc={searchDesc} nominees={nominees}/>
+      {searchDesc === '' ?
+      <LandingPage searchDesc = {searchDesc} doSearch={doSearch} addNominee={addNominee}/>
+      :
+      <>
+      </>
+    }
+      
+    
+      <SearchResults searchResults={searchResults} searchDesc={searchDesc} addNominee={addNominee} nominees={nominees}/>
       <Footer/>
     </div>
   );

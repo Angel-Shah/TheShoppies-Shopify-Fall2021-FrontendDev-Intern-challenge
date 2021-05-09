@@ -1,4 +1,6 @@
-import React,{useState} from 'react'
+import React,{useState} from 'react';
+import {SingleNominee} from "./SingleNominee";
+
 
 export default function Header(props) {
     
@@ -15,6 +17,7 @@ export default function Header(props) {
 
     return (
 
+
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
                 {/* <a className="navbar-brand" href="#">{props.title}</a> */}
@@ -24,13 +27,20 @@ export default function Header(props) {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
+                {props.searchDesc === '' ?
+                
+                    <>
+                    </>
+                :
 
-                <form className="d-flex mx-auto" onSubmit={search} style={{width:"50vw"}}>
-                        <input className="form-control " type="search" value={searchText} style={{borderRadius:"20px",border:"none"}}
-                        onChange={(e)=>{setsearchText(e.target.value)}} placeholder="Search by movie title..." aria-label="Search" id="searchText"  />
-                        <button className=" mx-2" type="submit" style={{backgroundColor:"#e5610e",color:"white",padding:"5px 15px 5px 15px",border:"none",borderRadius:"20px"}}>
-                            Search</button>
+                    <form className="d-flex mx-auto" onSubmit={search} style={{width:"50vw"}}>
+                            <input className="form-control " type="search" value={searchText} style={{borderRadius:"20px",border:"none"}}
+                            onChange={(e)=>{setsearchText(e.target.value)}} placeholder="Search by movie title..." aria-label="Search" id="searchText"  />
+                            <button className=" mx-2" type="submit" style={{backgroundColor:"#e5610e",color:"white",padding:"5px 15px 5px 15px",border:"none",borderRadius:"20px"}}>
+                                Search</button>
                     </form>
+                }
+
 
 
                     <ul className="navbar-nav mx-auto ">
@@ -41,15 +51,20 @@ export default function Header(props) {
                             <a className="nav-link" href="#">Link</a>
                         </li> */}
                         <li className="nav-item dropdown ">
-                            <a className="nav-link dropdown-toggle active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{color:"#e5610e"}}>
+                            <a className="nav-link dropdown-toggle active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{color:"#e5610e", width:"30vw"}}>
                                 Your Selected Nominees
                                 </a>
-                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown" style={{height:"50vw"}}>
-                                <li><a className="dropdown-item" href="#">Action</a></li>
-                                <li><a className="dropdown-item" href="#">Another action</a></li>
-                                <li><hr className="dropdown-divider" /></li>
-                                <li><a className="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
+                             {props.nominees.length === 0 ?
+                                  <ul className="dropdown-menu" aria-labelledby="navbarDropdown" style={{height:"50vh"}}>
+                                  <li>You haven't nominated anything yet.</li>
+                              </ul>
+                             :
+                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown" style={{height:"50vh"}}>
+                                    {props.nominees.map((movie)=>{
+                                        return <SingleNominee movie={movie}/>;
+                                    })}
+                                </ul>
+                             }   
                         </li>
                         {/* <li className="nav-item">
                             <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
