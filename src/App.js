@@ -47,7 +47,7 @@ function App() {
 
   const doSearch = async(searchText)=>{
 
-      const respone = await fetch('http://www.omdbapi.com/?s='+searchText+'&apikey=b8a0efa7');
+      const respone = await fetch('https://www.omdbapi.com/?s='+searchText+'&apikey=b8a0efa7');
       const data = await respone.json();
       
 
