@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
+    <script type='text/javascript'>//<![CDATA[ 
+      $(window).load(function(){
+      $('.dropdown.keep-open').on({
+          "shown.bs.dropdown": function() { this.closable = false; },
+          "click":             function() { this.closable = true; },
+          "hide.bs.dropdown":  function() { return this.closable; }
+      });
+
+      $('.dropdown-menu ').click(function(e) {
+    e.stopPropagation();
+      });
+
+      $(document).delegate("ul.dropdown-menu [data-keepOpenOnClick]", "click", function(e) {
+    e.stopPropagation();
+});
+      });//]]>  
+      </script>
+
+
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

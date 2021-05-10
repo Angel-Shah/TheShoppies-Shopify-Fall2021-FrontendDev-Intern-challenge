@@ -10,16 +10,41 @@ function App() {
   const [searchResults, setsearchResults] = useState([]);
   const [searchDesc, setsearchDesc] = useState('');
   const [nominees, setNominees] = useState([]);
+
+  const [limitReached, setlimitReached] = useState(false);
   
+
   const addNominee = (movie)=>{
-    const nomineeToAdd ={
-      Title: movie.Title,
-      Year: movie.Year,
-      Type: movie.Type,
-      Poster: movie.Poster
+
+    if(nominees.length < 5){
+
+      const nomineeToAdd ={
+        Title: movie.Title,
+        Year: movie.Year,
+        Type: movie.Type,
+        Poster: movie.Poster
+      }
+      return setNominees([...nominees,nomineeToAdd]);
+    }else{
+      return setlimitReached(true);
     }
-    return setNominees([...nominees,nomineeToAdd]);
+      
+    
   }
+
+
+  const delNominee =(movie)=>{
+    // console.log("i am deleted: ",todo );
+    
+    setNominees(nominees.filter((e)=>{
+      return e!==movie
+    }));
+
+    setlimitReached(false);
+
+
+  }
+
 
   const doSearch = async(searchText)=>{
     console.log("searching for",searchText);
@@ -57,13 +82,29 @@ function App() {
   return (
     <div>
       
-      <Header title="The Shoppies" doSearch={doSearch} searchDesc={searchDesc} nominees={nominees}/>
+      <Header title="The Shoppies" doSearch={doSearch} searchDesc={searchDesc} nominees={nominees} delNominee={delNominee}/>
       {searchDesc === '' ?
       <LandingPage searchDesc = {searchDesc} doSearch={doSearch} addNominee={addNominee}/>
       :
       <>
       </>
     }
+
+      {nominees.length >= 5 ?
+        <div class="alert alert-success" role="alert">
+        Nicely done! You have successfully nominated 5 movies.
+        </div>
+    :
+        <></>
+      }
+
+      {limitReached ?
+      <div class="alert alert-danger" role="alert">
+      You have reached the limit of 5 nominations. To add another nominee, you must first remove a movie from the nominee list.
+      </div>
+      :
+      <></>
+      }
       
     
       <SearchResults searchResults={searchResults} searchDesc={searchDesc} addNominee={addNominee} nominees={nominees}/>

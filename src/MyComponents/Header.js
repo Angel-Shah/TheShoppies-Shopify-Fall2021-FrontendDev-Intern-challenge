@@ -50,18 +50,18 @@ export default function Header(props) {
                         <li className="nav-item">
                             <a className="nav-link" href="#">Link</a>
                         </li> */}
-                        <li className="nav-item dropdown ">
-                            <a className="nav-link dropdown-toggle active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{color:"#e5610e", width:"30vw"}}>
+                        <li className="nav-item dropdown " >
+                            <a className="nav-link dropdown-toggle active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{color:"#e5610e", width:"27vw"}}>
                                 Your Selected Nominees
                                 </a>
                              {props.nominees.length === 0 ?
-                                  <ul className="dropdown-menu" aria-labelledby="navbarDropdown" style={{height:"50vh"}}>
+                                  <ul className="dropdown-menu " aria-labelledby="navbarDropdown" style={{height:"auto"}}>
                                   <li>You haven't nominated anything yet.</li>
                               </ul>
                              :
-                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown" style={{height:"50vh"}}>
+                                <ul className="dropdown-menu" aria-labelledby="navbarDropdown" style={{height:"auto",visibility:"visible"}}>
                                     {props.nominees.map((movie)=>{
-                                        return <SingleNominee movie={movie}/>;
+                                        return <SingleNominee movie={movie} delNominee={props.delNominee}/>;
                                     })}
                                 </ul>
                              }   

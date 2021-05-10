@@ -23,7 +23,7 @@ export const SearchResults = (props) => {
                     {props.searchResults.map((movie)=>{
                         // console.log("i am adding movie:", movie);
 
-                return <SingleResult movie={movie} key={movie.key} addNominee={props.addNominee}/>
+                         return <SingleResult movie={movie} key={movie.key} addNominee={props.addNominee} nominees={props.nominees}/>
 
                     })}
                     </div>
