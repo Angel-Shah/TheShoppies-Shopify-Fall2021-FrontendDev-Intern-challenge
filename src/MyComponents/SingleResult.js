@@ -16,7 +16,7 @@ export const SingleResult = ({movie,addNominee,nominees}) => {
     return (
         <div style={{backgroundColor:"whitesmoke",margin:"7px",height:"35vh",width:"20vw",borderRadius:"10px",padding:"10px",border:"1px solid lightgrey",boxShadow:"0px 5px 5px 0px #888888",display:"flex",flexDirection:"row"}} >
             
-            <img src={movie.Poster} style={{height:"30vh",width:"12vw",margin :"0%",marginTop:"0",marginRight:"2%"}}></img>
+            <img src={movie.Poster} alt="movie poster" style={{height:"30vh",width:"12vw",margin :"0%",marginTop:"0",marginRight:"2%"}}></img>
             {/* <p>{movie.genre} </p> */}
             
 

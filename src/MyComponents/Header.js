@@ -43,7 +43,7 @@ export default function Header(props) {
 
 
 
-                    <ul className="navbar-nav mx-auto ">
+                    <ul className="navbar-nav ms-auto ">
                         {/* <li className="nav-item">
                             <a className="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
@@ -51,7 +51,7 @@ export default function Header(props) {
                             <a className="nav-link" href="#">Link</a>
                         </li> */}
                         <li className="nav-item dropdown " >
-                            <a className="nav-link dropdown-toggle active " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{color:"#e5610e", width:"27vw"}}>
+                            <a className="nav-link dropdown-toggle active " href="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{color:"#e5610e", width:"27vw"}}>
                                 Your Selected Nominees
                                 </a>
                              {props.nominees.length === 0 ?
@@ -61,7 +61,7 @@ export default function Header(props) {
                              :
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown" style={{height:"auto",visibility:"visible"}}>
                                     {props.nominees.map((movie)=>{
-                                        return <SingleNominee movie={movie} delNominee={props.delNominee}/>;
+                                        return <SingleNominee movie={movie} key ={Math.random().toString(36).substr(2, 9)} delNominee={props.delNominee}/>;
                                     })}
                                 </ul>
                              }   

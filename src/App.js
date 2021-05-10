@@ -2,7 +2,7 @@ import './App.css';
 import { Footer } from './MyComponents/Footer';
 import Header from "./MyComponents/Header";
 import { SearchResults } from './MyComponents/SearchResults';
-import React,{useState, useEffect} from 'react';
+import React,{useState} from 'react';
 import { LandingPage } from './MyComponents/LandingPage';
 
 function App() {
@@ -34,7 +34,6 @@ function App() {
 
 
   const delNominee =(movie)=>{
-    // console.log("i am deleted: ",todo );
     
     setNominees(nominees.filter((e)=>{
       return e!==movie
@@ -47,31 +46,19 @@ function App() {
 
 
   const doSearch = async(searchText)=>{
-    console.log("searching for",searchText);
 
       const respone = await fetch('http://www.omdbapi.com/?s='+searchText+'&apikey=b8a0efa7');
       const data = await respone.json();
-      console.log("API URL is : ",'http://www.omdbapi.com/?s='+searchText+'&apikey=b8a0efa7' );
-      console.log(data);
-      console.log(data.Search);
+      
 
 
       if(data.Response === "True"){
         
-        const arrToAdd = data.Search;
-        console.log("Trying to add :",arrToAdd);
-
-        // data.Search.map((mov) => {
-        //   console.log("added a movie");
-        //   const searchResult = {
-        //     title: mov.Title,
-        //     year: mov.Year,
-            
-        //   };
+      
         setsearchDesc(searchText);
 
           return setsearchResults(data.Search);
-        // });
+      
 
       }
 
@@ -91,7 +78,7 @@ function App() {
     }
 
       {nominees.length >= 5 ?
-        <div class="alert alert-success" role="alert">
+        <div className="alert alert-success" role="alert">
         Nicely done! You have successfully nominated 5 movies.
         </div>
     :
@@ -99,7 +86,7 @@ function App() {
       }
 
       {limitReached ?
-      <div class="alert alert-danger" role="alert">
+      <div className="alert alert-danger" role="alert">
       You have reached the limit of 5 nominations. To add another nominee, you must first remove a movie from the nominee list.
       </div>
       :

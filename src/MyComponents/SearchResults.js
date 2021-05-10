@@ -21,9 +21,8 @@ export const SearchResults = (props) => {
                     <div className="sidewaysWrap">
 
                     {props.searchResults.map((movie)=>{
-                        // console.log("i am adding movie:", movie);
 
-                         return <SingleResult movie={movie} key={movie.key} addNominee={props.addNominee} nominees={props.nominees}/>
+                         return <SingleResult movie={movie} key={Math.random().toString(36).substr(2, 9)} addNominee={props.addNominee} nominees={props.nominees}/>
 
                     })}
                     </div>

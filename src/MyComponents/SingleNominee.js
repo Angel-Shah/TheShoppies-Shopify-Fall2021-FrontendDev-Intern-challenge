@@ -2,7 +2,7 @@ import React from 'react'
 
 export const SingleNominee = (props) => {
     return (
-        <li className=" mx-2" style={{ backgroundColor:"whitesmoke"}} data-keepOpenOnClick>
+        <li className=" mx-2" style={{ backgroundColor:"whitesmoke"}} >
             <div className="container" style={{display:"flex",flexDirection:"row", maxHeight:"10vh"}}>
                 <img src={props.movie.Poster} style={{height:"11vh"}} alt="movie poster" />
                 
